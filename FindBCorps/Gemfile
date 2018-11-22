@@ -4,3 +4,16 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 # Specify your gem's dependencies in FindBCorps.gemspec
 gemspec
+
+# The executable file will require this file and this file requires all 
+# other dependencies
+require 'nokogiri'
+require 'open-uri'
+require 'pry'
+require 'graphicsmagick'
+require 'mini_magick'
+
+require_relative  '../lib/FindBCorps/version'
+require_relative  '../lib/cli'
+require_relative  '../lib/corps'
+require_relative  '../lib/scraper'

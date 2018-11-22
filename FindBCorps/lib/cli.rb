@@ -1,6 +1,7 @@
 require "FindBCorps/version"
 
-module FindBCorps
-  class Error < StandardError; end
-  # Your code goes here...
+# CLI Controller
+
+class CLI
+
 end
