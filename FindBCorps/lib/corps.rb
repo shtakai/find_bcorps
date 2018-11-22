@@ -1,5 +1,3 @@
-require "FindBCorps/version"
-
 require 'pry'
 
 class Corp
@@ -18,5 +16,4 @@ class Corp
     @@all 
   end
 
- 
 end

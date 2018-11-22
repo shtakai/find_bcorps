@@ -1,9 +1,9 @@
-require 'pry'
 
 class Scraper
 
   def self.scrape_data
     corps_directory = []
+    
     doc = Nokogiri::HTML(open('https://bcorporation.net/directory'))
     doc.css('.node-company.card').each do |company_card|
      company_details = {
@@ -13,9 +13,9 @@ class Scraper
         offerings: company_card.css('field-name-field-products-and-services').text,
         location: company_card.css('field-name-field-country').text
       }
-      binding.pry
+      corps_directory << company_details
     end
   end
 end
     
-    # corps_directory << corps_hash
+ 
