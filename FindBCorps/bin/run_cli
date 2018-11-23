@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-# read the environment.rb 
+# read environment.rb 
 require_relative '../lib/config/environment.rb'
 
- Scraper.scrape_data
+ CLI.new.start
 
