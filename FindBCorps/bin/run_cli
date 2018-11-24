@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 
-# read environment.rb 
 require_relative '../lib/config/environment.rb'
 
- CLI.new.start
+CLI.new.call
+
+# FindBCorps::CLI.new.call
+
 
