@@ -1,7 +1,7 @@
 require 'pry'
 
 class Corp
-  attr_accessor :name, :offerings, :location, :full_profile_url, :image_url
+  attr_accessor :name, :offerings, :location, :sector, :go_to_full_profile, :full_profile_body, :image_url
 
   @@all = []
 
