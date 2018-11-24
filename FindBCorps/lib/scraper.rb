@@ -2,7 +2,7 @@
 class Scraper
 
   def self.scrape
-    # store companies and their details here?????. 
+    # TODO: store companies and their details here?????. 
     corps_directory = []
 
     # scrape this web page and iterate over each of their details and store them in the corps_directory array
@@ -17,7 +17,7 @@ class Scraper
         full_profile_body: company_card.css('.field-name-body p').text,
         location: company_card.css('field-name-field-country').text
       }
-      # push company_details hash into the corps_directory array.
+      # TODO: push company_details hash into the corps_directory array.
       corps_directory << company_details
     end
   end
