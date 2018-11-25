@@ -6,8 +6,8 @@ require 'open-uri'
 require 'colorize'
 require 'pry'
 
-require_relative  '../../lib/cli'
-require_relative  '../../lib/corps'
-require_relative  '../../lib/scraper'
+require_relative  '../cli'
+require_relative  '../corps'
+require_relative  '../scraper'
 
 
