@@ -2,8 +2,7 @@
 
 require_relative '../lib/config/environment.rb'
 
-CLI.new.call
+CLI.new.run
 
-# FindBCorps::CLI.new.call
 
 
