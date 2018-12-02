@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/config/environment.rb'
+require_relative "../lib/findbcorps"
 
-CLI.new.run
+CLI.new.call
 
 
 
