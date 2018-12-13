@@ -3,11 +3,12 @@ require 'pry'
 # require_relative 'states_array'
 
 class FindBCorps::CLI
+    
     BASE_URL ='https://bcorporation.net'
 
     def start 
-        scrape_listings
-        scrape_for_profile
+        FindBCorps::Scraper.scrape_listings
+        FindBCorps::Scraper.scrape_for_profile
         remove_country
         # greeting
     end
@@ -15,7 +16,7 @@ class FindBCorps::CLI
     #scrape the listings page
     def scrape_listings
         listings_array = FindBCorps::Scraper.scrape_listings
-        Corp.create_from_collection(listings_array)
+        FindBCorps::Scraper.Corp.create_from_collection(listings_array)
     end
 
     # TODO: Want to remove the "United States from returned values"
@@ -36,7 +37,7 @@ class FindBCorps::CLI
         puts "which state?"
         input = gets.chomp('United States')
 
-            Corp.all.select do |corp|
+        FindBCorps::Scraper.Corp.all.select do |corp|
             if input == corp.location
                  puts "YAY #{corp.name}\n #{corp.location}"          
                 else
