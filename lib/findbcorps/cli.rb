@@ -24,16 +24,16 @@ class FindBCorps::CLI
         
         if input == "1"
             # display_by_state
-        elsif input == "2"
-            # list products_services
-        elsif input == "3"
-            # list_all_corps"
+            elsif input == "2"
+                # list products_services
+            elsif input == "3"
+                # list_all_corps"
         else
-            # list_search_choices again until they get it right.
+         # list_search_choices again until they get it right.
         end
     end
 
-    #-----SCRAPING METHODS BEGIN------#
+ #-----SCRAPING METHODS BEGIN------#
     #scrape the listings page
     def scrape_listings
         listings_array = FindBCorps::Scraper.scrape_listings

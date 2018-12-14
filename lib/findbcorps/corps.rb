@@ -9,8 +9,8 @@ class FindBCorps::Corp
   @@profile_array = []
  
 
-  def initialize(hash)
-    hash.each do |attribute, value| 
+  def initialize(just_listings_hash)
+    just_listings_hash.each do |attribute, value| 
       self.send("#{attribute}=",value) 
     end
     @@just_listings << self
@@ -23,19 +23,19 @@ class FindBCorps::Corp
     end
   end
 
-  #this hash should be from #scrape_profile_page
-  def self.more_attributes(profile_hash)
-    profile_hash.each do |key, value| 
-      self.send("#{key}=", value)
-    end
-    @@profile_array << self
-  end
+  # #this hash should be from #scrape_profile_page
+  # def self.more_attributes(profile_hash)
+  #   profile_hash.each do |key, value| 
+  #     self.send("#{key}=", value)
+  #   end
+  #   @@profile_array << self
+  # end
   
 # .send : key is coming through as a symbol and we cannot call self.:symbol =
 #self.:sector = "food". Ruby didn't know how to make this work.
 
   def self.just_listings
-    @@all_listings 
+    @@just_listings 
   end
 
   def self.profile_array
