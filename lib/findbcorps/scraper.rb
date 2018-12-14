@@ -7,17 +7,17 @@ class FindBCorps::Scraper
     # USA search only. Using the url from website's location filter
     directory_page = Nokogiri::HTML(open('https://bcorporation.net/directory?search=&industry=&country=United%20States&state=&city='))
     
-    listings_scrape = []
+    just_listings_scrape = []
    
     directory_page.css("div.card__inner").each do |listing|
-      listings_scrape << {
+      just_listings_scrape << {
         name: listing.css(".card__text .heading4.card__title").text,
         offerings: listing.css(".card__text, .field-name-field-products-and-services").text,
         location: listing.css(".card__text .field-name-field-country").text,
         profile_url: listing.css("a").attribute("href").value
         }
       end
-      
+
     listings_scrape
     
     end
@@ -38,7 +38,8 @@ class FindBCorps::Scraper
         }
       end
       
-    profile_scrape
+    profile_scrape.upcase
+  
   end
 
 end 

@@ -4,7 +4,8 @@ class FindBCorps::Corp
 
   attr_accessor :name, :offerings, :location, :profile_url, :certified_date,:sectors,:company_description, :website_url
 
-  @@all = []
+  @@just_listings = []
+    # TODO: Want to remove the "United States from returned values in @@all"
   @@profile_array = []
  
 
@@ -12,12 +13,12 @@ class FindBCorps::Corp
     hash.each do |attribute, value| 
       self.send("#{attribute}=",value) 
     end
-    @@all << self
+    @@just_listings << self
   end
 
   def self.create_from_collection(listings_array)
     listings_array.each do |corp|
-      corp = Corp.new(corp)#calls the initialize method.
+      corp = FindBCorps::Corp.new(corp)#calls the initialize method.
      
     end
   end
@@ -33,8 +34,8 @@ class FindBCorps::Corp
 # .send : key is coming through as a symbol and we cannot call self.:symbol =
 #self.:sector = "food". Ruby didn't know how to make this work.
 
-  def self.all
-    @@all 
+  def self.just_listings
+    @@all_listings 
   end
 
   def self.profile_array

@@ -7,33 +7,55 @@ class FindBCorps::CLI
     BASE_URL ='https://bcorporation.net'
 
     def start 
-        FindBCorps::Scraper.scrape_listings
-        FindBCorps::Scraper.scrape_for_profile
-        remove_country
-        # greeting
+        puts "--------------------------------------------------------------------\b".colorize(:black)
+        puts "Welcome to Find Borps,companies that balance social and environmental purpose with profit".bold.colorize(:black) 
+        # scrape_listings # a call to scraper class
+        # scrape what's on a company's individual profile page
+        # list search_choices
     end
 
+    def list_search_choices
+        puts "\nChoose your search type below by typing its corresponding number".bold.colorize(:light_blue)
+        puts "\n1. Search for U.S BCorporations by state.".colorize(:light_blue)
+        puts "\n2. Seach for U.S BCorporations by products or services offered.".colorize(:light_blue)
+        puts "\n3. List all U.S BCorporations.".colorize(:light_blue)
+        puts "------------------------------------------------------------------\b".colorize(:black)
+        input = gets.chomp
+        
+        if input == "1"
+            # display_by_state
+        elsif input == "2"
+            # list products_services
+        elsif input == "3"
+            # list_all_corps"
+        else
+            # list_search_choices again until they get it right.
+        end
+    end
+
+    #-----SCRAPING METHODS BEGIN------#
     #scrape the listings page
     def scrape_listings
         listings_array = FindBCorps::Scraper.scrape_listings
-        FindBCorps::Scraper.Corp.create_from_collection(listings_array)
+        FindBCorps::Corp.create_from_collection(listings_array)
+        binding.pry
     end
 
-    # TODO: Want to remove the "United States from returned values"
-    def remove_country(location)
-       
-    end
-
-    def scrape_for_profile
-        FindBCorps::Corp.profile_array.each do |corp|
-            profile_hash = FindBCorps::Scraper.scrape_profile_page(BASE_URL + corp.profile_url)
-            corp.more_attributes(profile_hash)  
-       end
-    end
+    # def scrape_for_profile
+    #     FindBCorps::Corp.profile_array.each do |corp|
+    #         profile_hash = FindBCorps::Scraper.scrape_profile_page(BASE_URL + corp.profile_url)
+    #         corp.more_attributes(profile_hash)  
+    #    end
+    # end
 
     # :location=>"Location: Brooklyn, New York, United States"
+     #-----SCRAPING METHODS END------#
 
-    def display_states
+    def list_all_corps
+
+    end
+
+    def display_by_state
         puts "which state?"
         input = gets.chomp('United States')
 
@@ -47,26 +69,6 @@ class FindBCorps::CLI
           puts "----------------------".colorize(:green)
       end
 
-    def greeting
-        puts "------Welcome to the FindBCorps app------".bold.colorize(:light_blue)
-        puts "\nEnter number that corresponds with your search choice".bold.colorize(:light_blue)
-        puts    "\n1. Search for BCorporations by state".colorize(:light_blue)
-        puts    "\n2. Seach for BCorporations by products or services offered".colorize(:light_blue)
-        input = gets.chomp
-        # convert to integer if input.to_i.between(1, 52)
-        #continue if not accurate, do it again (recursive)
-        #until input == exit
-
-            if input == "1"
-                display_states
-
-            elsif input == "2"
-                puts "This is my name: "
-            else
-                puts "Goodbye"
-            end
-    end
-    
 end
 
 
