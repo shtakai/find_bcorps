@@ -4,21 +4,22 @@ require 'pry'
 class FindBCorps::Scraper
 
   def self.scrape_listings
-    # USA search only. Using the url from website's location filter
+    # USA search only via website's location filter
     directory_page = Nokogiri::HTML(open('https://bcorporation.net/directory?search=&industry=&country=United%20States&state=&city='))
     
-    just_listings_scrape = []
+    listings_page_array = []
    
-    directory_page.css("div.card__inner").each do |listing|
-      just_listings_scrape << {
-        name: listing.css(".card__text .heading4.card__title").text,
-        offerings: listing.css(".card__text, .field-name-field-products-and-services").text,
-        location: listing.css(".card__text .field-name-field-country").text,
-        profile_url: listing.css("a").attribute("href").value
+    #iterate over the CS classes one at a time and pull the data within each listing card(e.g. company name, location, etc). Store these into the listings_page_array.
+    directory_page.css("div.card__inner").each do |listing_card|
+      listings_page_array << {
+        name: listing_card.css(".card__text .heading4.card__title").text,
+        offerings: listing_card.css(".card__text, .field-name-field-products-and-services").text,
+        location: listing_card.css(".card__text .field-name-field-country").text,
+        profile_url: listing_card.css("a").attribute("href").value
         }
       end
 
-    listings_scrape
+      listings_page_array
     
     end
 

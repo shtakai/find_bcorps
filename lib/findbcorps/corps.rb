@@ -4,20 +4,20 @@ class FindBCorps::Corp
 
   attr_accessor :name, :offerings, :location, :profile_url, :certified_date,:sectors,:company_description, :website_url
 
-  @@just_listings = []
+  @@listings_page_array = []
     # TODO: Want to remove the "United States from returned values in @@all"
   @@profile_array = []
  
 
-  def initialize(just_listings_hash)
-    just_listings_hash.each do |attribute, value| 
+  def initialize(listings_page_array)
+    listings_page_array.each do |attribute, value| 
       self.send("#{attribute}=",value) 
     end
-    @@just_listings << self
+    @@listings_page_array << self
   end
 
-  def self.just_listings
-    @@just_listings 
+  def self.listings_page_array
+    @@listings_page_array
   end
 
   def self.profile_array
