@@ -16,12 +16,21 @@ class FindBCorps::Corp
     @@just_listings << self
   end
 
-  def self.create_from_collection(listings_array)
-    listings_array.each do |corp|
-      corp = FindBCorps::Corp.new(corp)#calls the initialize method.
-     
-    end
+  def self.just_listings
+    @@just_listings 
   end
+
+  def self.profile_array
+    @@profile_array 
+  end
+end
+
+  # def self.create_from_collection(listings_array)
+  #   listings_array.each do |corp|
+  #     corp = FindBCorps::Corp.new(corp)#calls the initialize method.
+     
+  #   end
+  # end
 
   # #this hash should be from #scrape_profile_page
   # def self.more_attributes(profile_hash)
@@ -34,12 +43,5 @@ class FindBCorps::Corp
 # .send : key is coming through as a symbol and we cannot call self.:symbol =
 #self.:sector = "food". Ruby didn't know how to make this work.
 
-  def self.just_listings
-    @@just_listings 
-  end
 
-  def self.profile_array
-    @@profile_array 
-  end
 
-end

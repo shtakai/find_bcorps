@@ -16,9 +16,10 @@ class FindBCorps::CLI
 
     def list_search_choices
         puts "\nChoose your search type below by typing its corresponding number".bold.colorize(:light_blue)
-        puts "\n1. Search for U.S BCorporations by state.".colorize(:light_blue)
-        puts "\n2. Seach for U.S BCorporations by products or services offered.".colorize(:light_blue)
-        puts "\n3. List all U.S BCorporations.".colorize(:light_blue)
+        puts "\n1. List all U.S BCorporations.".colorize(:light_blue)
+        puts "\n2. Search for U.S BCorporations by state.".colorize(:light_blue)
+        puts "\n3. Seach for U.S BCorporations by products or services offered.".colorize(:light_blue)
+        
         puts "------------------------------------------------------------------\b".colorize(:black)
         input = gets.chomp
         
@@ -33,7 +34,7 @@ class FindBCorps::CLI
         end
     end
 
- #-----SCRAPING METHODS BEGIN------#
+ #-----BEGIN SCRAPING METHODS ------#
     #scrape the listings page
     def scrape_listings
         listings_array = FindBCorps::Scraper.scrape_listings
@@ -49,25 +50,33 @@ class FindBCorps::CLI
     # end
 
     # :location=>"Location: Brooklyn, New York, United States"
-     #-----SCRAPING METHODS END------#
+#-----END- SCRAPING METHODS -----#
 
+#-----BEGIN LIST/DISPLAY METHODS ------#
     def list_all_corps
-
+        FindBCorps::Corp.just_listings.each_with_index(1) do |corp, index|
+            puts "#{index}. #{corp.name}"
+        end
     end
 
     def display_by_state
-        puts "which state?"
-        input = gets.chomp('United States')
+        # puts "which state?"
+        # input = gets.chomp('United States')
 
-        FindBCorps::Scraper.Corp.all.select do |corp|
-            if input == corp.location
-                 puts "YAY #{corp.name}\n #{corp.location}"          
-                else
-                puts "sorry, #{corp.name} \n #{corp.location}"
-                end
-            end
-          puts "----------------------".colorize(:green)
+        # FindBCorps::Scraper.Corp.all.select do |corp|
+        #     if input == corp.location
+        #          puts "YAY #{corp.name}\n #{corp.location}"          
+        #         else
+        #         puts "sorry, #{corp.name} \n #{corp.location}"
+        #         end
+        #     end
+        #   puts "----------------------".colorize(:green)
       end
+
+      def display_by_offerings
+
+      end
+#-----END LIST or DISPLAY METHODS-----#
 
 end
 
