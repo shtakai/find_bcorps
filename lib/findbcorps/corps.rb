@@ -3,45 +3,36 @@ require 'pry'
 class FindBCorps::Corp
 
   attr_accessor :name, :offerings, :location, :profile_url, :certified_date,:sectors,:company_description, :website_url
-
-  @@listings_page_array = []
-    # TODO: Want to remove the "United States from returned values in @@all"
-  @@profile_array = []
  
+  @@all_listings = []
 
-  def initialize(listings_page_array)
-    listings_page_array.each do |attribute, value| 
-      self.send("#{attribute}=",value) 
+  def initialize(listings_hash)
+    @name = listings_hash[:name]
+    @offerings = listings_hash[:offerings]
+    @location = listings_hash[:location]
+    @profile_url = listings_hash[:profile_url]
+    # The above is the simple way to assign object attributes. A quicker way is doing this below with  (self.send)
+    # listings_hash.each do |key, value|
+    #    self.send("#{key}=", value)
+    #  end
+    #basically the above is saying something like'self.name = the key value of :name.
+     @@all_listings << self
+   end
+ 
+   def self.all_listings
+    @@all_listings
+   end
+
+  # create corp objects. This also calls on #initialize
+  def self.create_from_listings(all_listings)
+    all_listings.each do |corp|
+      corp = FindBCorps::Corp.new(corp)#calls the initialize method.
     end
-    @@listings_page_array << self
-  end
-
-  def self.listings_page_array
-    @@listings_page_array
   end
 
   def self.profile_array
     @@profile_array 
   end
 end
-
-  # def self.create_from_collection(listings_array)
-  #   listings_array.each do |corp|
-  #     corp = FindBCorps::Corp.new(corp)#calls the initialize method.
-     
-  #   end
-  # end
-
-  # #this hash should be from #scrape_profile_page
-  # def self.more_attributes(profile_hash)
-  #   profile_hash.each do |key, value| 
-  #     self.send("#{key}=", value)
-  #   end
-  #   @@profile_array << self
-  # end
-  
-# .send : key is coming through as a symbol and we cannot call self.:symbol =
-#self.:sector = "food". Ruby didn't know how to make this work.
-
 
 
