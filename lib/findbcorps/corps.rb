@@ -16,8 +16,9 @@ class FindBCorps::Corp
     #    self.send("#{key}=", value)
     #  end
     #basically the above is saying something like'self.name = the key value of :name.
-     @@all_listings << self
-   end
+     
+    @@all_listings << self
+    end
  
    def self.all_listings
     @@all_listings
@@ -30,8 +31,11 @@ class FindBCorps::Corp
     end
   end
 
-  def self.profile_array
-    @@profile_array 
+  def add_profile_attributes(profile_hash)
+    @certified_date = profile_hash[:certified_date]
+    @sectors = profile_hash[:sectors]
+    @company_description = profile_hash[:company_description]
+    @website_url = profile_hash[:website_url]
   end
 end
 

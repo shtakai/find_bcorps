@@ -1,6 +1,5 @@
 require 'pry'
 
-
 class FindBCorps::Scraper
 
   def self.scrape_listings
@@ -21,7 +20,7 @@ class FindBCorps::Scraper
       scraped_listings_array
   end
 
- # Scrape full profile page for the details that the directory listings page doesn't have.
+ # Scrape for items in full profile page for details that the listings scrape doesn't have.
   def self.scrape_profile_page(profile_url)
     
     profile_page = Nokogiri::HTML(open(profile_url))
@@ -38,7 +37,7 @@ class FindBCorps::Scraper
       end
       
     profile_scrape
-  
+
   end
 
 end 
