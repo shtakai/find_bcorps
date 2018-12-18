@@ -19,10 +19,11 @@ class FindBCorps::Corp
      
     @@all_listings << self
     end
- 
-   def self.all_listings
-    @@all_listings
-   end
+    
+    def self.all_listings
+      @@all_listings
+     end
+   
 
   # create corp objects. This also calls on #initialize
   def self.create_from_listings(all_listings)
