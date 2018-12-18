@@ -14,49 +14,39 @@ class FindBCorps::CLI
 
     def greeting
         puts "---------------------------------------------------"
-        puts "Thank you for trying the FindBcorps app".upcase
+        puts "--------------Thank you for trying the FindBcorps app--------------".upcase.bold
         puts "Below you will find a list of all certified BCorporations in the United States."
         list_corporations
     end
 
-    # lists all corps and adds a number to each so that we can ask them to choose which corp they would like to read more about and then take them to that corp's profile page.
     #TODO: Provide a way out if they don't want to see a full profile. Perhaps they would like to see a list of corps in their state.
     def list_corporations
-        puts "---------------------------------------------------"
+        puts "--------------Certified BCorporations in the United States--------------".upcase.bold
         FindBCorps::Corp.all_listings.each.with_index(1) do |corp_name, index|
-            puts "#{index}. #{corp_name.name} "
+            puts "#{index}. #{corp_name.name}-- #{corp_name.location}".upcase.bold 
         end
         which_corp_to_show
     end
 
-    #TODO: Jenn, I don't know how to make this method work so that it takes user's input of the corp it wants full details for and find it in the method.
     def which_corp_to_show
         puts ""
-        puts "Which BCorp would you like more information on? Please enter the number corresponding to the corporation"
-        input = gets.strip
+        puts "--------------Want more information about a specific BCorp?---------------".upcase.bold
+        puts "Enter the number corresponding to that corporation".bold
+        puts "--------------------------------------------------------------------------"
 
-        FindBCorps::Corp.all_listings.all_listings.find do |corp, index|
-            puts "Company name: #{corp.name.upcase} -- #{corp.location} -- #{corp.website_url}"
-            puts "    #{corp.sectors}"
-            puts "    Offerings: #{corp.offerings}"
-            puts "    #{corp.certified_date}"
-            puts "Company Description: #{corp.company_description}"
-            puts "---------------------------------------------------"
-        end
-    end
-
-    #TODO:  not sure yet if this method is necessary or if it can be combined with #which_corp_to_show.
-    # Show attributes from both listings scrape and the profile scrape.
-    def print_profile(corp)
-        # puts ""
-        # FindBCorps::Corp.all_listings.each.with_index() do |corp, index|
-        #     puts "Company name: #{corp.name.upcase} -- #{corp.location} -- #{corp.website_url}"
-        #     puts "    #{corp.sectors}"
-        #     puts "    Offerings: #{corp.offerings}"
-        #     puts "    #{corp.certified_date}"
-        #     puts "Company Description: #{corp.company_description}"
-        #     puts "---------------------------------------------------"
-        # end
+       # Change human input to an array index
+        input = gets.to_i - 1
+        # set `corp` equal to that one corp selected from the array of all the corps using the fact that we know the index value: `FindBCorps::Corp.all_listings[index]`
+        corp = FindBCorps::Corp.all_listings[input]
+        # print out the info about the corp using `corp.name` and so on
+        puts "Company name: #{corp.name}".upcase.bold
+        puts "#{corp.location}"
+        puts "#{corp.website_url}"
+        puts "#{corp.sectors}"
+        puts "Products, Services: #{corp.offerings}"
+        puts "#{corp.certified_date}"
+         puts "Company Description: #{corp.company_description}"
+         puts ""
     end
 
     #-------SCRAPE & MAKE.-------#
