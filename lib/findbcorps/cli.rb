@@ -29,6 +29,7 @@ class FindBCorps::CLI
         which_corp_to_show
     end
 
+    #TODO: Jenn, I don't know how to make this method work so that it takes user's input of the corp it wants full details for and find it in the method.
     def which_corp_to_show
         puts ""
         puts "Which BCorp would you like more information on? Please enter the number corresponding to the corporation"
