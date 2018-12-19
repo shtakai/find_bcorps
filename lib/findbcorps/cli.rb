@@ -3,7 +3,7 @@ require 'pry'
 
 class FindBCorps::CLI  
 
-    attr_accessor :sorted_listings
+    attr_accessor :all_attributes
     BASE_URL ='https://bcorporation.net'
     
     def start 
@@ -41,7 +41,18 @@ class FindBCorps::CLI
         profile_attributes = FindBCorps::Scraper.scrape_profile_page(BASE_URL + corp.profile_url)
         corp.add_profile_attributes(profile_attributes)
         # print out the info about the corp using `corp.name` and so on
+        puts "----------Profile for #{corp.name}----------\n".upcase.bold
+        puts "----------------------------------------------"
+        puts "Corporation name:".upcase.bold
+        puts "#{corp.name}\n \n"
+        puts "Location & Website:".upcase.bold 
         puts "#{corp.location},  #{corp.website_url}\n \n"
+        puts  "#{corp.sectors}\n \n"
+        puts "Products, Services:".upcase.bold
+        puts "#{corp.offerings}\n \n"
+        puts "#{corp.certified_date}\n \n"
+        puts "Company Description:".upcase.bold
+        puts "#{corp.company_description}\n"
     end
 
     #-------SCRAPE & MAKE.-------#
@@ -50,14 +61,14 @@ class FindBCorps::CLI
         FindBCorps::Corp.create_from_listings(all_listings)
     end
     
-    #this is the 2nd scrape(full profile attributes)
-    def add_attributes
-        FindBCorps::Corp.all_listings.each do |corp|
-            profile_attributes = FindBCorps::Scraper.scrape_profile_page(BASE_URL + corp.profile_url)
-            corp.add_profile_attributes(profile_attributes)
-        end
-    end
-    #-------END------------#
+    # #this is the 2nd scrape(full profile attributes)
+    # def add_attributes
+    #     FindBCorps::Corp.all_listings.each do |corp|
+    #         profile_attributes = FindBCorps::Scraper.scrape_profile_page(BASE_URL + corp.profile_url)
+    #         corp.add_profile_attributes(profile_attributes)
+    #     end
+    # end
+    # #-------END------------#
 end
 #____________________#TODO_________________________#
   #-------LISTINGS---------#
