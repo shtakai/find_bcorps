@@ -9,7 +9,7 @@ class FindBCorps::CLI
     def start 
         make_corp_objects
         greeting
-        add_attributes
+        
     end
 
     def greeting
