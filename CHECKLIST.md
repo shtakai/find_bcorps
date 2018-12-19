@@ -1,12 +1,12 @@
 # CLI Project Requirement Review Checklist
 
-    - A short description
-    - Install instructions
-    - A contributor's guide
-    - A link to the license for your code
+     * [ ] A short description
+     * [ ] Install instructions
+     * [ ] A contributor's guide
+    * [ ] A link to the license for your code
 
 ## CLI Essentials *
-    - Have a CLI for interfacing with the application
+    *[] Have a CLI for interfacing with the application
     - Pull data from an external source
     - Implement both list and detail views. The data provided must go at least one level deep.
     - The application is pretty DRY
@@ -17,4 +17,4 @@
     - The meaning of the "self" keyword
     - Method types - class vs. instance methods
     - Method return types - knowing what methods return
-    - Iterating through collections - at least using #each with a block
+    - [ ] Iterating through collections - at least using #each with a block

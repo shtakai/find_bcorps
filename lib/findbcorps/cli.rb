@@ -24,19 +24,35 @@ class FindBCorps::CLI
         list_corporations
     end
 
-    #TODO: Provide a way out if they don't want to see a full profile. Perhaps they would like to see a list of corps in their state.
+   # -------LISTINGS----------#
     def list_corporations
         puts "Certified BCorporations in the United States".upcase.bold
         FindBCorps::Corp.all_listings.each.with_index(1) do |corp_name, index|
             puts "#{index}. #{corp_name.name}-- #{corp_name.location}".upcase.bold 
         end
+
         which_corp_to_show
     end
+
+    def list_by_offerings
+        puts ""
+        puts "Companies and their Services or Products"
+        puts ""
+        # @sorted_listings.each.with_index(1) do |products,index|
+        #     puts "#{index}. #{products.name.upcase.bold} - #{products.offerings}"
+        # end
+    end
+
+    def list_by_state
+        # @sorted_listings.each.with_index(1) do |state,index|
+        # puts "#{index}. #{state.location.upcase.bold} -- #{state.name}"
+    end
+    #-------END listings----------#
 
     def which_corp_to_show
         puts ""
         puts "Want more information about a specific BCorp?\n\n".upcase.bold
-        puts "Enter the number corresponding to that corporation\n\n".bold
+        puts "Enter the corresponding number to that corporation\n\n".bold
         input = gets.to_i - 1
         # set `corp` equal to that one corp selected from the array of all the corps using the fact that we know the index value: `FindBCorps::Corp.all_listings[index]`
         corp = FindBCorps::Corp.all_listings[input]
@@ -55,28 +71,37 @@ class FindBCorps::CLI
         puts "#{corp.certified_date}\n \n"
         puts "Company Description:".upcase.bold
         puts "#{corp.company_description}\n"
+        
+        menu
     end
 
-end
-#____________________#TODO_________________________#
-  #-------LISTINGS---------#
-  #TODO: The sort method is no longer needed. Update existing references.
-    # def list_states
-    #     # @sorted_listings.each.with_index(1) do |state,index|
-    #     #     puts "#{index}. #{state.location.upcase.bold} -- #{state.name}"
-    #     # end
-    # end
+    def menu
+        puts "Would you like to:
+            A. View Bcorp listings to choose another BCorp \n
+            B. Search for a Bcorp by state\n
+            C. Search for BCorps according to products or services\n
+            D. Exit"
+        input = gets.upcase
 
-    # #TODO: Do I want tp give this as an option? What about the list_states option? 
-    # def list_offerings
-    #     # puts ""
-    #     # puts "Companies and their Services or Products"
-    #     # puts ""
-    #     # @sorted_listings.each.with_index(1) do |products,index|
-    #     #     puts "#{index}. #{products.name.upcase.bold} - #{products.offerings}"
-    #     # end
-    # end
-    # #-------END----------#
+        if input == "A"
+            list_corporations
+        elsif == "B"
+            list_by_state
+        elsif == "C"
+            list_by_offerings
+        elsif == "D"
+            exit
+        else 
+            "Please enter the letter that corresponds to your choice of what you would like to do next."
+            menu
+        end
+    end
 
     #-------PROMPTS/Menus------#
-    #-------END----------#
+ 
+    def exit
+        "Goodbye. See you soon."
+    end
+    
+end
+
