@@ -29,8 +29,8 @@ class FindBCorps::Scraper
 
     profile_page.css(".node-company").each do |detail|
       profile_scrape = {
-        certified_date: detail.css(".field-name-field-date-certified").text,
-        sectors: detail.css(".field-name-field-sector").text,
+        certified_date: detail.css(".field-name-field-date-certified").text.gsub!("Certified Since: ", ""),
+        sectors: detail.css(".field-name-field-sector").text.gsub!("Sector: ", ""),
         company_description: detail.css(".field-name-body").text,
         website_url: detail.css(".field-name-field-website").text
         }

@@ -18,18 +18,23 @@ class FindBCorps::CLI
     end
 
     def greeting
-        puts ""
-        puts "Thank you for trying the FindBcorps app".upcase.bold
-        puts "Below you will find a list of all certified BCorporations in the United States."
+        puts "\n\nThank you for trying the FindBcorps app. Below you will find a list of all certified BCorporations in the United States.\n".bold
         list_corporations
     end
 
-   
+    # -------LISTINGS----------#
+    def list_corporations
+        puts "Certified BCorporations in the United States:\n".upcase.bold
+         FindBCorps::Corp.all_listings.each.with_index(1) do |corp_name, index|
+            puts "#{index}.#{corp_name.name}".upcase.bold.blue
+            puts "   #{corp_name.location}\n".blue
+         end
+        which_corp_to_show
+     end
 
     def which_corp_to_show
-        puts ""
-        puts "Want more information about a specific BCorp?\n\n".upcase.bold
-        puts "Enter the corresponding number to that corporation\n\n".bold
+        puts "----------------------------"
+        puts "Which company would you like to view more information about?\n".upcase.bold
         input = gets.to_i - 1
         # set `corp` equal to that one corp selected from the array of all the corps using the fact that we know the index value: `FindBCorps::Corp.all_listings[index]`
         corp = FindBCorps::Corp.all_listings[input]
@@ -37,46 +42,39 @@ class FindBCorps::CLI
         corp.add_profile_attributes(profile_attributes)
 
         # print out the info about the corp using `corp.name` and so on
-        puts "-Profile for #{corp.name}-\n".upcase.bold
-        puts "Corporation name:".upcase.bold
-        puts "#{corp.name}\n \n"
-        puts "Location & Website:".upcase.bold 
-        puts "#{corp.location},  #{corp.website_url}\n \n"
-        puts  "#{corp.sectors}\n \n"
-        puts "Products, Services:".upcase.bold
-        puts "#{corp.offerings}\n \n"
-        puts "#{corp.certified_date}\n \n"
-        puts "Company Description:".upcase.bold
+        puts "Corporation name:".upcase.bold.blue
+        puts "#{corp.name}\n\n"
+        puts "Location:".upcase.bold.blue
+        puts "#{corp.location}\n\n"
+        puts "Sector, Industry:".upcase.bold.blue
+        puts  "#{corp.sectors}\n\n"
+        puts "Products, Services:".upcase.bold.blue
+        puts "#{corp.offerings}\n\n"
+        puts "Certification Date:".upcase.bold.blue
+        puts "#{corp.certified_date}\n\n"
+        puts "Company Description:".upcase.bold.blue
         puts "#{corp.company_description}\n"
-        
+        puts "Website:".upcase.bold.blue
+        puts "#{corp.website_url}\n\n"
+        puts "----------------------------"
         menu
     end
 
     def menu
-        puts "Would you like to:\n\n
-            1. View all Bcorp listings \n
+        puts "What would you like to do next?
+            1. View all Bcorp listings
             2. Exit"
+            puts "----------------------------"
         input = gets.to_i
 
         if input == 1
             list_corporations
         else input == 2
             puts "\n\nThank you! Goodbye"
-
             exit
         end
     end
    
-    # -------LISTINGS----------#
-    def list_corporations
-        puts "Certified BCorporations in the United States".upcase.bold
-        FindBCorps::Corp.all_listings.each.with_index(1) do |corp_name, index|
-            puts "#{index}. #{corp_name.name}-- #{corp_name.location}".upcase.bold 
-        end
-
-        which_corp_to_show
-    end
-
     #---------FOR VERSION 2--------------+
     # def list_by_offerings
     #     puts ""
