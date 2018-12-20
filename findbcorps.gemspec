@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["sharonrieger"]
   spec.email         = ["sharonarieger@gmail.com"]
 
-  spec.summary       = %q{Consumers and job seekers can search for certified BCorps by name, industry, location, certification date, or by products and services.}
-  spec.description   = %q{"The B Corp community works toward reduced inequality, lower levels of poverty, a healthier environment, stronger communities, and the creation of more high quality jobs with dignity and purpose. By harnessing the power of business, B Corps use profits and growth as a means to a greater end: positive impact for their employees, communities, and the environment." --Bcorps}
+  spec.summary       = %q{An app for consumers and job seekers to find BCorporations in the United States to do business with or to work for.}
+  spec.description   = %q{"What is a BCorp and why would I want to find one? "The B Corp community works toward reduced inequality, lower levels of poverty, a healthier environment, stronger communities, and the creation of more high quality jobs with dignity and purpose. B Corps use profits and growth as a means to a greater end: positive impact for their employees, communities, and the environment." --Bcorps}
   spec.homepage      = "https://github.com/sharonrieger/find_bcorps"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
