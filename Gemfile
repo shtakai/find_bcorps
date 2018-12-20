@@ -7,5 +7,6 @@ gem 'nokogiri'
 gem "openurl"
 gem 'colorize'
 gem 'pry'
+gem 'colored'
 
 gemspec
