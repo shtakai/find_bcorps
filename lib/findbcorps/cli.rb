@@ -75,21 +75,22 @@ class FindBCorps::CLI
         end
     end
    
-    #---------FOR VERSION 2--------------+
+    #TODO:
+    # #---------FOR VERSION 2--------------+
     # def list_by_offerings
-    #     puts ""
-    #     puts "Companies and their Services or Products"
-    #     puts ""
-    #     # @sorted_listings.each.with_index(1) do |products,index|
-    #     #     puts "#{index}. #{products.name.upcase.bold} - #{products.offerings}"
-    #     # end
+    #     puts "We've listed products and services\n".upcase.bold
+    #     FindBCorps::Corp.all_listings.each.with_index(1) do |corp_offerings, index|
+    #         puts "#{index}.#{corp_offerings.offerings}".upcase.bold.blue
+    #     end
+    #     binding.pry
+    # puts "Would you like to see that company?"
     # end
 
-    # def list_by_state
-    #     # @sorted_listings.each.with_index(1) do |state,index|
-    #     # puts "#{index}. #{state.location.upcase.bold} -- #{state.name}"
-    # end
-    # #-------END listings----------#
+    # # def list_by_state
+    # #     # @sorted_listings.each.with_index(1) do |state,index|
+    # #     # puts "#{index}. #{state.location.upcase.bold} -- #{state.name}"
+    # # end
+    # # #-------END listings----------#
     
 end
 
