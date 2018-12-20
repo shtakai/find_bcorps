@@ -24,30 +24,7 @@ class FindBCorps::CLI
         list_corporations
     end
 
-   # -------LISTINGS----------#
-    def list_corporations
-        puts "Certified BCorporations in the United States".upcase.bold
-        FindBCorps::Corp.all_listings.each.with_index(1) do |corp_name, index|
-            puts "#{index}. #{corp_name.name}-- #{corp_name.location}".upcase.bold 
-        end
-
-        which_corp_to_show
-    end
-
-    def list_by_offerings
-        puts ""
-        puts "Companies and their Services or Products"
-        puts ""
-        # @sorted_listings.each.with_index(1) do |products,index|
-        #     puts "#{index}. #{products.name.upcase.bold} - #{products.offerings}"
-        # end
-    end
-
-    def list_by_state
-        # @sorted_listings.each.with_index(1) do |state,index|
-        # puts "#{index}. #{state.location.upcase.bold} -- #{state.name}"
-    end
-    #-------END listings----------#
+   
 
     def which_corp_to_show
         puts ""
@@ -60,7 +37,7 @@ class FindBCorps::CLI
         corp.add_profile_attributes(profile_attributes)
 
         # print out the info about the corp using `corp.name` and so on
-        puts "-Profile for #{corp.name}-\n".colorize(:white).on_blue
+        puts "-Profile for #{corp.name}-\n".upcase.bold
         puts "Corporation name:".upcase.bold
         puts "#{corp.name}\n \n"
         puts "Location & Website:".upcase.bold 
@@ -76,32 +53,45 @@ class FindBCorps::CLI
     end
 
     def menu
-        puts "Would you like to:
-            A. View Bcorp listings to choose another BCorp \n
-            B. Search for a Bcorp by state\n
-            C. Search for BCorps according to products or services\n
-            D. Exit"
-        input = gets.upcase
+        puts "Would you like to:\n\n
+            1. View all Bcorp listings \n
+            2. Exit"
+        input = gets.to_i
 
-        if input == "A"
+        if input == 1
             list_corporations
-        elsif == "B"
-            list_by_state
-        elsif == "C"
-            list_by_offerings
-        elsif == "D"
+        else input == 2
+            puts "\n\nThank you! Goodbye"
+
             exit
-        else 
-            "Please enter the letter that corresponds to your choice of what you would like to do next."
-            menu
         end
     end
+   
+    # -------LISTINGS----------#
+    def list_corporations
+        puts "Certified BCorporations in the United States".upcase.bold
+        FindBCorps::Corp.all_listings.each.with_index(1) do |corp_name, index|
+            puts "#{index}. #{corp_name.name}-- #{corp_name.location}".upcase.bold 
+        end
 
-    #-------PROMPTS/Menus------#
- 
-    def exit
-        "Goodbye. See you soon."
+        which_corp_to_show
     end
+
+    #---------FOR VERSION 2--------------+
+    # def list_by_offerings
+    #     puts ""
+    #     puts "Companies and their Services or Products"
+    #     puts ""
+    #     # @sorted_listings.each.with_index(1) do |products,index|
+    #     #     puts "#{index}. #{products.name.upcase.bold} - #{products.offerings}"
+    #     # end
+    # end
+
+    # def list_by_state
+    #     # @sorted_listings.each.with_index(1) do |state,index|
+    #     # puts "#{index}. #{state.location.upcase.bold} -- #{state.name}"
+    # end
+    # #-------END listings----------#
     
 end
 
