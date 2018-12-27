@@ -11,20 +11,17 @@ class FindBCorps::Corp
     @offerings = listings_hash[:offerings]
     @location = listings_hash[:location]
     @profile_url = listings_hash[:profile_url]
-    # The above is the simple way to assign object attributes. A quicker way is doing this below with  (self.send)
+    # OR
     # listings_hash.each do |key, value|
-    #    self.send("#{key}=", value)
-    #  end
+    # self.send("#{key}=", value)
     #basically the above is saying something like'self.name = the key value of :name.
-     
     @@all_listings << self
-    end
+  end
     
-    def self.all_listings
-      @@all_listings
-     end
+  def self.all_listings
+    @@all_listings
+  end
    
-
   # create corp objects. This also calls on #initialize
   def self.create_from_listings(all_listings)
     all_listings.each do |corp|
