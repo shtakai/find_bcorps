@@ -12,7 +12,7 @@ class FindBCorps::CLI
 
 	#-------SCRAPE & MAKE.-------#
 	def make_corp_objects
-    all_listings FindBCorps::Scraper.scrape_listings
+    all_listings = FindBCorps::Scraper.scrape_listings
     FindBCorps::Corp.create_from_listings(all_listings)
 	end
 
@@ -40,7 +40,7 @@ class FindBCorps::CLI
     # set `corp` equal to that one corp selected from the array of all the corps using thfact that we know the index value: `FindBCorps::Corp.all_listings[index]`
     corp = FindBCorps::Corp.all_listings[input]
        
-    profile_attributes = FindBCorps::Scraper.scrape_profile_page(BASE_URL corp.profile_url)
+    profile_attributes = FindBCorps::Scraper.scrape_profile_page(BASE_URL + corp.profile_url)
     corp.add_profile_attributes(profile_attributes)
 
     # print out the info about the corp using `corp.name` and so on
