@@ -34,7 +34,7 @@ class FindBCorps::CLI
 
   def which_corp_to_show
     puts "----------------------------"
-    puts "Which company would you like to view more information about?\n".upcase.bold
+    puts "If you would like to see more information about a specific company, enter their corresponding number now.\n".upcase.bold
         
     input = gets.to_i - 1
     # set `corp` equal to that one corp selected from the array of all the corps using thfact that we know the index value: `FindBCorps::Corp.all_listings[index]`
@@ -64,9 +64,9 @@ class FindBCorps::CLI
   end
 
   def menu
-    puts "What would you like to do next?
-      1. View all Bcorp listings
-      2. Exit"
+    puts "What would you like to do next? Enter the corresponding number.".upcase.bold
+     puts "1. View all Bcorp listings?"
+     puts "2. Exit?"
     puts "----------------------------"
 			
 		input = gets.to_i
