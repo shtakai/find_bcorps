@@ -34,17 +34,21 @@ class FindBCorps::CLI
     which_corp_to_show
   end
 
+  #--------- PROFILES------------
   def which_corp_to_show
     puts "----------------------------"
     puts "If you would like to see more information about a specific company, enter their corresponding number now.\n".upcase.bold
       
     input = gets.to_i - 1
-    
-    #TODO: how do I tell Ruby to check if input is valid or not? My array is indexed 1 - 16. I want to tell Ruby to check this and if not ok, puts an error message. If the input is correct, continue with code after this part
 
- 
-  # set `corp` equal to that one corp selected from the array of all the corps using the fact that we know the index value: `FindBCorps::Corp.all_listings[index]`
+  # we set `corp` equal to that one corp selected since we know the index value: `FindBCorps::Corp.all_listings[index]`
     corp = FindBCorps::Corp.all_listings[input]
+
+    # BEGIN messing around with some ideas--
+        #TODO: how do I tell Ruby to check if input is valid or not? My array is indexed 1 - 16. I want to tell Ruby to check this and if not ok, puts an error message. If the input is correct, continue with code after this part
+     if 
+        
+    # END ideas--
     
     profile_attributes = FindBCorps::Scraper.scrape_profile_page(BASE_URL + corp.profile_url)
     corp.add_profile_attributes(profile_attributes)
@@ -68,7 +72,7 @@ class FindBCorps::CLI
    
     menu
   end
-
+#------------MENU--------------#
   def menu
     puts "What would you like to do next? Enter the corresponding number.".upcase.bold
     puts "1. View all Bcorp listings?"
