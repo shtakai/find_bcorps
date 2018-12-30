@@ -46,10 +46,10 @@ class FindBCorps::CLI
 
     # BEGIN messing around with some ideas--
         #TODO: how do I tell Ruby to check if input is valid or not? My array is indexed 1 - 16. I want to tell Ruby to check this and if not ok, puts an error message. If the input is correct, continue with code after this part
-     if 
+     
         
     # END ideas--
-    
+
     profile_attributes = FindBCorps::Scraper.scrape_profile_page(BASE_URL + corp.profile_url)
     corp.add_profile_attributes(profile_attributes)
 
