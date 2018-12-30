@@ -39,7 +39,10 @@ class FindBCorps::CLI
     puts "If you would like to see more information about a specific company, enter their corresponding number now.\n".upcase.bold
       
     input = gets.to_i - 1
+    
+    #TODO: how do I tell Ruby to check if input is valid or not? My array is indexed 1 - 16. I want to tell Ruby to check this and if not ok, puts an error message. If the input is correct, continue with code after this part
 
+ 
   # set `corp` equal to that one corp selected from the array of all the corps using the fact that we know the index value: `FindBCorps::Corp.all_listings[index]`
     corp = FindBCorps::Corp.all_listings[input]
     
@@ -62,7 +65,7 @@ class FindBCorps::CLI
     puts "Website:".upcase.bold.blue
     puts "#{corp.website_url}\n\n"
     puts "----------------------------"
-        
+   
     menu
   end
 
