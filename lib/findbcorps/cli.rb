@@ -23,14 +23,6 @@ class FindBCorps::CLI
     list_corporations
   end
 
-  # reuse this often?
-  def index_all_corps
-    b = FindBCorps::Corp.all_listings.each.with_index(1) do |corp_name,index|
-      puts "#{index}.#{corp_name.name}".upcase.bold.blue
-      puts "   #{corp_name.location}\n".blue
-    end
-  end
-
   # -------LISTINGS----------#
   def list_corporations
     puts "Certified BCorporations in the United States:\n".upcase.bold
