@@ -19,7 +19,7 @@ class FindBCorps::CLI
   end
 
   def greeting
-    puts "\n\nThank you for tryingtheFindBcorps app. Below you will find a list of all certified BCorps in the U.S.\n".bold
+    puts "\n\nThank you for trying the 1FindBcorps app. Below you will find a list of all certified BCorps in the U.S.\n".bold
     list_corporations
   end
 
@@ -38,40 +38,42 @@ class FindBCorps::CLI
   def which_corp_to_show
     puts "----------------------------"
     puts "If you would like to see more information about a specific company, enter their corresponding number now.\n".upcase.bold
-      
-    input = gets.to_i - 1
+    
+    input = gets.strip
+    bcorp_count = FindBCorps::Corp.all_listings.count
 
-  # we set `corp` equal to that one corp selected since we know the index value: `FindBCorps::Corp.all_listings[index]`
-    corp = FindBCorps::Corp.all_listings[input]
+    if input.to_i > 0 && input.to_i <= bcorp_count
+ 
+      corp = FindBCorps::Corp.all_listings[input.to_i - 1]
 
-    # BEGIN messing around with some ideas--
-        #TODO: how do I tell Ruby to check if input is valid or not? My array is indexed 1 - 16. I want to tell Ruby to check this and if not ok, puts an error message. If the input is correct, continue with code after this part
-     
+      #these are the additional details about corporation from the profile pages.
+      profile_attributes = FindBCorps::Scraper.scrape_profile_page(BASE_URL + corp.profile_url)
+      corp.add_profile_attributes(profile_attributes)
         
-    # END ideas--
+          # print out the info about the specific corp chosen by user.
+          puts "Corporation name:".upcase.bold.blue
+          puts "#{corp.name}\n\n"
+          puts "Location:".upcase.bold.blue
+          puts "#{corp.location}\n\n"
+          puts "Sector, Industry:".upcase.bold.blue
+          puts  "#{corp.sectors}\n\n"
+          puts "Products, Services:".upcase.bold.blue
+          puts "#{corp.offerings}\n\n"
+          puts "Certification Date:".upcase.bold.blue
+          puts "#{corp.certified_date}\n\n"
+          puts "Company Description:".upcase.bold.blue
+          puts "#{corp.company_description}\n"
+          puts "Website:".upcase.bold.blue
+          puts "#{corp.website_url}\n\n"
+          puts "----------------------------"
+      menu
+    else
+      #error message
+      puts "The information you are entering is not working. Please be sure to type the number you see on your screen"
+    end
 
-    profile_attributes = FindBCorps::Scraper.scrape_profile_page(BASE_URL + corp.profile_url)
-    corp.add_profile_attributes(profile_attributes)
-
-    # print out the info about the corp using `corp.name` and so on
-    puts "Corporation name:".upcase.bold.blue
-    puts "#{corp.name}\n\n"
-    puts "Location:".upcase.bold.blue
-    puts "#{corp.location}\n\n"
-    puts "Sector, Industry:".upcase.bold.blue
-    puts  "#{corp.sectors}\n\n"
-    puts "Products, Services:".upcase.bold.blue
-    puts "#{corp.offerings}\n\n"
-    puts "Certification Date:".upcase.bold.blue
-    puts "#{corp.certified_date}\n\n"
-    puts "Company Description:".upcase.bold.blue
-    puts "#{corp.company_description}\n"
-    puts "Website:".upcase.bold.blue
-    puts "#{corp.website_url}\n\n"
-    puts "----------------------------"
-   
-    menu
   end
+
 #------------MENU--------------#
   def menu
     puts "What would you like to do next? Enter the corresponding number.".upcase.bold
@@ -83,7 +85,7 @@ class FindBCorps::CLI
     if input == 1
       list_corporations
     else input == 2
-      puts "\n\nThank you!"
+      puts "\n\nYou have successfully exited the program. Thank you!"
       exit
     end
   end
