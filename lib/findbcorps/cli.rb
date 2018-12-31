@@ -19,7 +19,7 @@ class FindBCorps::CLI
   end
 
   def greeting
-    puts "\n\nThank you for trying the 1FindBcorps app. Below you will find a list of all certified BCorps in the U.S.\n".bold
+    puts "\n\nThank you for using the FindBcorps app. Below you will find a list of all certified BCorps in the U.S.\n".bold
     list_corporations
   end
 
