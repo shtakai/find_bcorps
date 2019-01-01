@@ -5,7 +5,6 @@ require 'pry'
 class FindBCorps::CLI  
   # attr_accessor :all_attributes
   BASE_URL ='https://bcorporation.net'
-  indexed_corps = []
 
   def start 
     make_corp_objects
